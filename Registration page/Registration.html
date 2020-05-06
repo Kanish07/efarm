@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>Registration</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    .form-group {
+        max-width: 500px;
+        margin: auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container">
+            
+<form action="insert.php" method="post">
+    <div style="text-align:center">
+        <h2 style="color:#218838;">User Registration</h2>
+        <p style="color:#218838;">Leave your details below to register.</p>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputName1" style="color:#218838;">User Name</label>
+        <input type="text" class="form-control" id="username" name="username" aria-describedby="Enter user name" placeholder="Enter user Name" required>
+        <span id="usercheck" class="help-block"></span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputName1" style="color:#218838;">First Name</label>
+        <input type="text" class="form-control" id="name" name="FName" aria-describedby="Enter your name" placeholder="Enter Name" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputName1" style="color:#218838;">Last Name</label>
+        <input type="text" class="form-control" name="LName" aria-describedby="Enter your name" placeholder="Enter Name" required>
+    </div> 
+    <div class="form-group">
+        <label for="exampleInputEmail1" style="color:#218838;">Email address</label>
+        <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Enter email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="phone" style="color:#218838;">Phone Number</label>
+        <input type="tel" class="form-control" name="Phone" id="phn" aria-describedby="Phonehelp" placeholder="Phone Number" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"  title="Phone Number" required>
+    </div>
+    <div class="form-group">
+        <label for="hno" style="color:#218838;">House Number and floor</label>
+        <input type="text" class="form-control" name="add1" placeholder="House Number and floor" required>
+    </div>
+    <div class="form-group">
+        <label for="area" style="color:#218838;">Area</label>
+        <input type="text" class="form-control" name="area" placeholder="Area" required>
+    </div>
+    <div class="form-group">
+        <label for="District" style="color:#218838;">District</label>
+        <input type="text" class="form-control" name="dis" placeholder="District" required>
+    </div>
+    <div class="form-group">
+        <label for="pin" style="color:#218838;">Pin-Code</label>
+        <input type="number" class="form-control" name="pin" placeholder="PIN CODE" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1" style="color:#218838;">Password</label>
+        <input type="password" class="form-control" name="Password" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="align-text-bottom" for="exampleCheck1" style="color:#218838;"><br><a href="terms.html">I accept the terms and conditions.</a></label>
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn btn-success"  id="submit" name="Submit" style="width:100%;">Submit</button>   
+    </div>
+</div>
+</div>
+</form>
+</body>
+</html>
+
+/* This is used for check for exixting the username that already exists in the DataBase and preventing them from using it */
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#username').keyup(function() {
+	var usercheck = $(this).val();
+		    $('#usercheck');
+			$.post("check.php", {user_name: usercheck} , function(data)
+			{
+			if (data.status == true)
+			{
+			$('#usercheck').parent('div').removeClass('has-error').addClass('has-success');
+			
+			} else {
+			$('#usercheck').parent('div').removeClass('has-success').addClass('has-error');
+			}
+			$('#usercheck').html(data.msg);
+			},'json');
+	});
+});
+
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#username').keyup(function() {
+	var usercheck = $(this).val();
+		    $('#usercheck');
+			$.post("check.php", {user_name: usercheck} , function(data)
+			{
+			if (data.status == true)
+			{
+			$('#usercheck').parent('div').removeClass('has-error').addClass('has-success');
+			
+			} else {
+			$('#usercheck').parent('div').removeClass('has-success').addClass('has-error');
+			}
+			$('#usercheck').html(data.msg);
+			},'json');
+	});
+});
+</script>
